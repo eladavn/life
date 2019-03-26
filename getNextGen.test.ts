@@ -10,4 +10,13 @@ describe('getNextGen', function() {
         // Assert
         assert.lengthOf(result,0);
     });
+
+    it('should return [[false]] array when getting [[false]]', function() {
+
+        // Act
+        let result = getNextGen([[false]]);
+
+        // Assert
+        assert.deepEqual(result,[[false]]);
+    });
 });
