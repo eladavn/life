@@ -1,3 +1,7 @@
 export function getNextGen(currGen : boolean[][] ) : boolean[][] {
-    return [];
+    if (currGen.length === 0) {
+        return [];
+    }
+
+    return [[false]];
 }
