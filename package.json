@@ -4,13 +4,17 @@
   "description": "",
   "main": "index.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "ts-mocha *.test.ts"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/chai": "^4.1.7",
     "@types/lodash": "^4.14.123",
+    "@types/mocha": "^5.2.6",
     "@types/node": "^11.11.7",
+    "chai": "^4.2.0",
+    "mocha": "^6.0.2",
     "ts-mocha": "^6.0.0",
     "ts-node": "^8.0.3",
     "typescript": "^3.3.4000"
