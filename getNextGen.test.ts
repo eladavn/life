@@ -35,4 +35,17 @@ describe('getNextGen', function() {
         expect(callWithThreeDimensions).to.throw();
     });
 
+    it('should return a matrix with the same dimensions as given', () => {
+
+        // Arrange
+        let currGen = ndarray(new Array(6), [3,2]);
+
+        // Act
+        let nextGen = getNextGen(currGen);
+
+        // Assert
+        assert.deepEqual(nextGen.shape,[2,3]);
+
+    })
+
 });
