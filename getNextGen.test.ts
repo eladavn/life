@@ -7,7 +7,7 @@ describe('getNextGen', function() {
     it('should return empty array when getting empty array', function() {
 
         // Act
-        let result = getNextGen(ndarray([]));
+        let result = getNextGen(ndarray([])) as ndarray<boolean>;
 
         // Assert
         assert.equal(result.data.length,0);
@@ -16,7 +16,7 @@ describe('getNextGen', function() {
     it('should return [[false]] array when getting [[false]]', function() {
 
         // Act
-        let result = getNextGen(ndarray([false]));
+        let result = getNextGen(ndarray([false])) as ndarray<boolean>;
 
         // Assert
         assert.deepEqual(result.data,[false]);
@@ -24,15 +24,11 @@ describe('getNextGen', function() {
 
     it('should accept up to two dimensions', function() {
 
-        // Arrange
-        let callWithThreeDimensions = () => {
-
-            // Act
-            getNextGen(ndarray([],[2,2,2])); 
-        }
+        // Act
+        let result = getNextGen(ndarray([],[2,2,2])); 
 
         // Assert
-        expect(callWithThreeDimensions).to.throw();
+        assert.isTrue(result instanceof Error);
     });
 
     it('should return a matrix with the same dimensions as given', () => {
@@ -41,7 +37,7 @@ describe('getNextGen', function() {
         let currGen = ndarray(new Array(6), [3,2]);
 
         // Act
-        let nextGen = getNextGen(currGen);
+        let nextGen = getNextGen(currGen) as ndarray<boolean>;
 
         // Assert
         assert.deepEqual(nextGen.shape,[3,2]);
