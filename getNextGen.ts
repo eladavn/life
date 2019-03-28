@@ -1,6 +1,6 @@
 import * as ndarray from 'ndarray';
 import {List} from 'immutable';
-import * as _ from 'lodash';
+import {getNumLivesAroundCell} from './getNumLivesAroundCell';
 
 export function getNextGen(currGen : ndarray<number> ) : ndarray<number> | Error {
 
@@ -15,9 +15,6 @@ function convert2dto1dIndex(row:number, col:number) : number {
     return 4;   
 }
 
-function getNumLivesAroundCell(currGen : ndarray<number>, row:number, col:number) : number {
-    return _.sum(currGen.data)-1;
-}
 
 function shouldCellLive(currGen : ndarray<number>, row:number, col:number) : boolean {
     return getNumLivesAroundCell(currGen,row,col) < 2 ? false : true;
