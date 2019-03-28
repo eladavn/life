@@ -10,5 +10,5 @@ export function getNextGen(currGen : ndarray<boolean> ) : ndarray<boolean> {
         return ndarray<boolean>([]);
     }
 
-    return ndarray<boolean>([false]);
+    return ndarray(currGen.data.slice(), currGen.shape);
 }

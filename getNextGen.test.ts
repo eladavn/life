@@ -44,7 +44,7 @@ describe('getNextGen', function() {
         let nextGen = getNextGen(currGen);
 
         // Assert
-        assert.deepEqual(nextGen.shape,[2,3]);
+        assert.deepEqual(nextGen.shape,[3,2]);
 
     })
 
