@@ -1,6 +1,5 @@
 import {getNextGen} from "./getNextGen"; 
 import {assert} from 'chai';
-import {expect} from 'chai';
 import * as ndarray from 'ndarray';
 
 describe('getNextGen', function() {
