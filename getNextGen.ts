@@ -1,6 +1,6 @@
 import * as ndarray from 'ndarray';
 
-export function getNextGen(currGen : ndarray<boolean> ) : ndarray<boolean> | Error {
+export function getNextGen(currGen : ndarray<number> ) : ndarray<number> | Error {
 
     return (
         currGen.dimension > 2 ?
