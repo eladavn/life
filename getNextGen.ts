@@ -1,7 +1,9 @@
-export function getNextGen(currGen : boolean[][] ) : boolean[][] {
-    if (currGen.length === 0) {
-        return [];
+import * as ndarray from 'ndarray';
+
+export function getNextGen(currGen : ndarray<boolean> ) : ndarray<boolean> {
+    if (currGen.data.length === 0) {
+        return ndarray<boolean>([]);
     }
 
-    return [[false]];
+    return ndarray<boolean>([false]);
 }

@@ -20,6 +20,8 @@
     "typescript": "^3.3.4000"
   },
   "dependencies": {
-    "lodash": "^4.17.11"
+    "@types/ndarray": "^1.0.7",
+    "lodash": "^4.17.11",
+    "ndarray": "^1.0.18"
   }
 }
