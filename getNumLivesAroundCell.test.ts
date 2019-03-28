@@ -33,4 +33,19 @@ describe('getNumLivesAroundCell', () => {
         // Assert
         assert.equal(result,4);
     });
+
+    it('with cell surrounded in all directions', () => {
+        // Arrange
+        let matrix = ndarray([
+                1, 1, 0, 0,
+                0, 0, 0, 0,
+                0, 1, 1, 0]            
+            , [3,4]);
+
+        // Act
+        let result = getNumLivesAroundCell(matrix, 1, 2);
+
+        // Assert
+        assert.equal(result,3);
+    });
 });
