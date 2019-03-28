@@ -18,4 +18,19 @@ describe('getNumLivesAroundCell', () => {
         // Assert
         assert.equal(result,4);
     });
+
+    it('works for dead middle cell within 3x3 matrix', () => {
+        // Arrange
+        let matrix = ndarray([
+                1, 1, 0,
+                0, 0, 0,
+                0, 1, 1]            
+            , [3,3]);
+
+        // Act
+        let result = getNumLivesAroundCell(matrix, 1, 1);
+
+        // Assert
+        assert.equal(result,4);
+    });
 });
