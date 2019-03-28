@@ -15,8 +15,12 @@ function convert2dto1dIndex(row:number, col:number) : number {
     return 4;   
 }
 
+function getNumLivesAroundCell(currGen : ndarray<number>, row:number, col:number) : number {
+    return _.sum(currGen.data)-1;
+}
+
 function shouldCellLive(currGen : ndarray<number>, row:number, col:number) : boolean {
-    return _.sum(currGen.data)-1 < 2 ? false : true;
+    return getNumLivesAroundCell(currGen,row,col) < 2 ? false : true;
 }
 
 function getNextGen2D(currGen : ndarray<number> ) : ndarray<number> {
