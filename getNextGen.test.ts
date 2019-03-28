@@ -13,7 +13,7 @@ describe('getNextGen', function() {
         assert.equal(result.data.length,0);
     });
 
-    it('should return [[false]] array when getting [[false]]', function() {
+    it('should return [[0]] array when getting [[0]]', function() {
 
         // Act
         let result = getNextGen(ndarray([0])) as ndarray<number>;
@@ -55,6 +55,7 @@ describe('getNextGen', function() {
 
         // Assert
         assert.equal(nextGen.get(1,1),0);
+
     });
 
 });
