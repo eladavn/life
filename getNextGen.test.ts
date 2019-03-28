@@ -1,5 +1,6 @@
 import {getNextGen} from "./getNextGen"; 
 import {assert} from 'chai';
+import {expect} from 'chai';
 import * as ndarray from 'ndarray';
 
 describe('getNextGen', function() {
@@ -19,6 +20,19 @@ describe('getNextGen', function() {
 
         // Assert
         assert.deepEqual(result.data,[false]);
+    });
+
+    it('should accept up to two dimensions', function() {
+
+        // Arrange
+        let callWithThreeDimensions = () => {
+
+            // Act
+            getNextGen(ndarray([],[2,2,2])); 
+        }
+
+        // Assert
+        expect(callWithThreeDimensions).to.throw();
     });
 
 });
