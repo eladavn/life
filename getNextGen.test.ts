@@ -57,5 +57,21 @@ describe('getNextGen', function() {
 
     });
 
+    it('should keep a cell with two neighbors', ()=>{
+        
+        // Arrange
+        let currGen = ndarray<number>(new Int8Array(9), [3,3]);
+        currGen.set(1,1,1); // The cell
+        currGen.set(0,0,1);  // It's neighbors
+        currGen.set(0,1,1);
+        
+        // Act
+        let nextGen = getNextGen(currGen) as ndarray<number>;
+
+        // Assert
+        assert.equal(nextGen.get(1,1),1);
+
+    });
+
 });
 
