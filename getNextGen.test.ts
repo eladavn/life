@@ -30,7 +30,7 @@ describe('getNextGen', function() {
         assert.isTrue(result instanceof Error);
     });
 
-    it('should return a matrix with the same dimensions as given', () => {
+    it('should return a matrix with the same size as given', () => {
 
         // Arrange
         let currGen = ndarray(new Array(6), [3,2]);
@@ -72,6 +72,24 @@ describe('getNextGen', function() {
         assert.equal(nextGen.get(1,1),1);
 
     });
+
+    it('should kill a cell with one neighbor', ()=>{
+        
+        // Arrange
+        let currGen = ndarray([
+            0, 1, 0,
+            0, 1, 0,
+            0, 0, 0]            
+        , [3,3]);
+    
+        // Act
+        let nextGen = getNextGen(currGen) as ndarray<number>;
+
+        // Assert
+        assert.equal(nextGen.get(1,1),0);
+
+    });
+
 
 });
 
