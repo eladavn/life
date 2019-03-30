@@ -6,8 +6,16 @@ function getNumColumns(matrix : ndarray<number>) : number {
     return matrix.shape[1];
 }
 
+function getNumRows(matrix : ndarray<number>) : number {
+    return matrix.shape[0];
+}
+
 function isOnTopEdge(row : number, matrix: ndarray<number>) : boolean {
     return row === 0;
+}
+
+function isOnBottomEdge(row : number, matrix: ndarray<number>) : boolean {
+    return row === getNumRows(matrix)-1;
 }
 
 function isOnLeftEdge(col : number, matrix: ndarray<number>) : boolean {
@@ -31,7 +39,7 @@ function getSurroundingWidth(col : number, matrix: ndarray<number>) : number {
 }
 
 function getSurroundingHeight(row : number, matrix: ndarray<number>) : number {
-    return isOnTopEdge(row, matrix)  ? 2 : 3;
+    return isOnTopEdge(row, matrix) || isOnBottomEdge(row,matrix)  ? 2 : 3;
 }
 
 
