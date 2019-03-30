@@ -35,7 +35,9 @@ function getSurroundingTopRow(row : number, matrix: ndarray<number>) : number {
 }
 
 function getSurroundingWidth(col : number, matrix: ndarray<number>) : number {
-    return isOnLeftEdge(col, matrix) || isOnRightEdge(col, matrix) ? 2 : 3;
+    return isOnLeftEdge(col, matrix) && isOnRightEdge(col, matrix) ? 1 :
+            isOnLeftEdge(col, matrix) || isOnRightEdge(col, matrix) ? 2 : 
+            3;
 }
 
 function getSurroundingHeight(row : number, matrix: ndarray<number>) : number {
