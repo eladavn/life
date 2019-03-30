@@ -63,4 +63,19 @@ describe('getNumLivesAroundCell', () => {
         // Assert
         assert.equal(result,1);
     });
+
+    it('with cell on left edge', () => {
+        // Arrange
+        let matrix = ndarray([
+                0, 1,
+                0, 0,
+                0, 1]            
+            , [3,2]);
+
+        // Act
+        let result = getNumLivesAroundCell(matrix, 1, 0);
+
+        // Assert
+        assert.equal(result,2);
+    });
 });
