@@ -35,7 +35,7 @@ function getNextGen2D(currGen : ndarray<number> ) : ndarray<number> {
             getNextGenForLessThanTwoRowsMatrix(currGen) :
             List<number>(currGen.data)
                 .update(convert2dto1dIndex(1,1),
-                    _ =>  shouldCellLive(currGen,1,1) ? 1 : 0)
+                    _ =>  getNextGenCell(currGen,1,1))
                 .toArray()
         ,currGen.shape);
 
