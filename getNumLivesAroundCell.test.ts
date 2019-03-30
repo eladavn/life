@@ -122,4 +122,20 @@ describe('getNumLivesAroundCell', () => {
         // Assert
         assert.equal(result,2);
     });    
+
+    it('with single column', () => {
+        
+        // Arrange
+        let matrix = ndarray([
+            1,
+            0,
+            1]
+            , [3,1]);
+
+        // Act
+        let result = getNumLivesAroundCell(matrix, 1, 0);
+
+        // Assert
+        assert.equal(result,2);
+    });    
 });
