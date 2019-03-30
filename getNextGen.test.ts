@@ -90,6 +90,19 @@ describe('getNextGen', function() {
 
     });
 
+    it('should iterate on a single row', ()=>{
+        
+        // Arrange
+        let currGen = ndarray([
+            1, 1, 1]            
+        , [1,3]);
+    
+        // Act
+        let nextGen = getNextGen(currGen) as ndarray<number>;
 
+        // Assert
+        assert.deepEqual(nextGen.data,[0,1,0]);
+
+    });
 });
 
