@@ -108,4 +108,18 @@ describe('getNumLivesAroundCell', () => {
         // Assert
         assert.equal(result,3);
     });    
+
+
+    it('with single row', () => {
+        
+        // Arrange
+        let matrix = ndarray([1,0,1]
+            , [1,3]);
+
+        // Act
+        let result = getNumLivesAroundCell(matrix, 0, 1);
+
+        // Assert
+        assert.equal(result,2);
+    });    
 });
