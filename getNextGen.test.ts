@@ -126,5 +126,24 @@ describe('getNextGen', function() {
             0,0,0,0]);
 
     });
+
+    it('should keep a cell with three neighbors', ()=>{
+        
+        // Arrange
+        let currGen = ndarray([
+            1, 1,
+            1, 1]            
+        , [2,2]);
+   
+        
+        // Act
+        let nextGen = getNextGen(currGen) as ndarray<number>;
+
+        // Assert
+        assert.deepEqual(nextGen.data,[
+            1,1,
+            1,1]);
+
+    });
 });
 
