@@ -104,5 +104,23 @@ describe('getNextGen', function() {
         assert.deepEqual(nextGen.data,[0,1,0]);
 
     });
+
+    it('should iterate on rows', ()=>{
+        
+        // Arrange
+        let currGen = ndarray([
+            1, 0, 1,
+            1, 0, 1]            
+        , [2,3]);
+    
+        // Act
+        let nextGen = getNextGen(currGen) as ndarray<number>;
+
+        // Assert
+        assert.deepEqual(nextGen.data,[
+            0,0,0,
+            0,0,0]);
+
+    });
 });
 
