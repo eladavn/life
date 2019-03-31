@@ -145,5 +145,22 @@ describe('getNextGen', function() {
             1,1]);
 
     });
+
+    it('should kill a cell with more than three neighbors', ()=>{
+        
+        // Arrange
+        let currGen = ndarray([
+            1, 1, 1,
+            1, 1, 0]            
+        , [2,3]);
+   
+        
+        // Act
+        let nextGen = getNextGen(currGen) as ndarray<number>;
+
+        // Assert
+        assert.equal(nextGen.get(1,1),0);
+
+    });
 });
 
