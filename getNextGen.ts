@@ -24,13 +24,17 @@ function getColFromFlatArrayIndex(index:number, colsCount : number) : number {
 }
 
 
-function shouldCellLive(currGen : ndarray<number>, row:number, col:number) : boolean {
+function shouldCellLive(numLivesAroundCell : number) : boolean {
 
-    return getNumLivesAroundCell(currGen,row,col) < 2 ? false : true;
+    return numLivesAroundCell < 2 ? 
+        false : 
+        numLivesAroundCell > 3 ?
+            false :
+            true ;
 }
 
 function getNextGenCell(currGen : ndarray<number>, row:number, col:number) : number {
-    return shouldCellLive(currGen,row,col) ? 1 : 0;
+    return shouldCellLive(getNumLivesAroundCell(currGen,row,col)) ? 1 : 0;
 }
 
 function getNextGen2D(currGen : ndarray<number> ) : ndarray<number> {
