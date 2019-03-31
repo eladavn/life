@@ -109,17 +109,21 @@ describe('getNextGen', function() {
         
         // Arrange
         let currGen = ndarray([
-            1, 0, 1,
-            1, 0, 1]            
-        , [2,3]);
+            1, 0, 0, 1,
+            0, 0, 0, 0,
+            0, 0, 0, 0,
+            1, 0, 0, 1]            
+        , [4,4]);
     
         // Act
         let nextGen = getNextGen(currGen) as ndarray<number>;
 
         // Assert
         assert.deepEqual(nextGen.data,[
-            0,0,0,
-            0,0,0]);
+            0,0,0,0,
+            0,0,0,0,
+            0,0,0,0,
+            0,0,0,0]);
 
     });
 });
