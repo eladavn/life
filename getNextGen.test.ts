@@ -196,5 +196,23 @@ describe('getNextGen', function() {
         assert.equal(nextGen.get(0,1),0);
 
     });
+
+    it('should keep a cell with four neighbors dead', ()=>{
+        
+        // Arrange
+        let currGen = ndarray([
+            1, 1,
+            0, 1,
+            1, 0]            
+        , [3,2]);
+   
+        
+        // Act
+        let nextGen = getNextGen(currGen) as ndarray<number>;
+
+        // Assert
+        assert.equal(nextGen.get(1,0),0);
+
+    });
 });
 
