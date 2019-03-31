@@ -24,17 +24,27 @@ function getColFromFlatArrayIndex(index:number, colsCount : number) : number {
 }
 
 
-function shouldCellLive(numLivesAroundCell : number) : boolean {
+function shouldCellLive(currCelVal: number, numLivesAroundCell : number) : boolean {
 
-    return numLivesAroundCell < 2 ? 
-        false : 
-        numLivesAroundCell > 3 ?
-            false :
-            true ;
+    return currCelVal === 0 ?
+        (
+            numLivesAroundCell === 3 ?
+                true:
+                false
+        ) :
+        (
+            // Cell is currently alive
+            numLivesAroundCell<2 ?
+                false:
+                numLivesAroundCell>3 ?
+                    false:
+                    // Alive cell surrounded by 2-3 living cells
+                    true
+        );
 }
 
 function getNextGenCell(currGen : ndarray<number>, row:number, col:number) : number {
-    return shouldCellLive(getNumLivesAroundCell(currGen,row,col)) ? 1 : 0;
+    return shouldCellLive(currGen.get(row,col), getNumLivesAroundCell(currGen,row,col)) ? 1 : 0;
 }
 
 function getNextGen2D(currGen : ndarray<number> ) : ndarray<number> {
