@@ -179,5 +179,22 @@ describe('getNextGen', function() {
         assert.equal(nextGen.get(0,1),1);
 
     });
+
+    it('should keep a cell with two neighbors dead', ()=>{
+        
+        // Arrange
+        let currGen = ndarray([
+            1, 0,
+            0, 1]            
+        , [2,2]);
+   
+        
+        // Act
+        let nextGen = getNextGen(currGen) as ndarray<number>;
+
+        // Assert
+        assert.equal(nextGen.get(0,1),0);
+
+    });
 });
 
