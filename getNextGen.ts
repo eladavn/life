@@ -1,6 +1,7 @@
 import * as ndarray from 'ndarray';
-import {List} from 'immutable';
 import {getNumLivesAroundCell} from './getNumLivesAroundCell';
+
+let shouldDebug = false;
 
 export function getNextGen(currGen : ndarray<number> ) : ndarray<number> | Error {
 
@@ -11,8 +12,22 @@ export function getNextGen(currGen : ndarray<number> ) : ndarray<number> | Error
     );
 }
 
-function convert2dto1dIndex(row:number, col:number) : number {
-    return 4;   
+function getRowFromFlatArrayIndex(index:number, colsCount : number) : number {
+
+    if (shouldDebug) {
+        console.log(`getRowFromFlatArrayIndex [${index},${colsCount}] : ${Math.floor(index/colsCount)}`);
+    }
+
+    return Math.floor(index/colsCount);   
+}
+
+function getColFromFlatArrayIndex(index:number, colsCount : number) : number {
+
+    if (shouldDebug) {
+        console.log(`getColFromFlatArrayIndex [${index},${colsCount}] : ${index%colsCount}`);
+    }
+
+    return index%colsCount;   
 }
 
 
@@ -21,6 +36,11 @@ function shouldCellLive(currGen : ndarray<number>, row:number, col:number) : boo
 }
 
 function getNextGenCell(currGen : ndarray<number>, row:number, col:number) : number {
+
+    if (shouldDebug) {
+        console.log(`getNextGenCel [${row},${col}]`);
+    }
+
     return shouldCellLive(currGen,row,col) ? 1 : 0;
 }
 
@@ -28,15 +48,21 @@ function  getNextGenForLessThanTwoRowsMatrix(currGen : ndarray<number>) : ndarra
     return currGen.data.map((val : number, index : number) => getNextGenCell(currGen, 0, index));
 }
 
+function  getNextGenForMoreThanOneRowsMatrix(currGen : ndarray<number>) : ndarray.Data<number> {
+
+    shouldDebug = true;
+
+    return currGen.data.map((val : number, index : number) => getNextGenCell(currGen, 
+                getRowFromFlatArrayIndex(index, currGen.shape[1]),
+                getColFromFlatArrayIndex(index, currGen.shape[1])));
+}
+
 function getNextGen2D(currGen : ndarray<number> ) : ndarray<number> {
 
     return ndarray( 
         currGen.shape[0] < 2 ?
             getNextGenForLessThanTwoRowsMatrix(currGen) :
-            List<number>(currGen.data)
-                .update(convert2dto1dIndex(1,1),
-                    _ =>  getNextGenCell(currGen,1,1))
-                .toArray()
+            getNextGenForMoreThanOneRowsMatrix(currGen)            
         ,currGen.shape);
 
 }
