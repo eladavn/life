@@ -10,24 +10,24 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@types/chai": "^4.1.7",
+    "@types/chai": "^4.2.11",
     "@types/immutable": "^3.8.7",
-    "@types/lodash": "^4.14.123",
-    "@types/mocha": "^5.2.6",
-    "@types/node": "^11.11.7",
-    "@types/terminal-kit": "^1.26.0",
+    "@types/lodash": "^4.14.150",
+    "@types/mocha": "^7.0.2",
+    "@types/node": "^13.13.4",
+    "@types/terminal-kit": "^1.28.2",
     "chai": "^4.2.0",
-    "mocha": "^6.0.2",
-    "ts-mocha": "^6.0.0",
-    "ts-node": "^8.0.3",
-    "typescript": "^3.3.4000"
+    "mocha": "^7.1.2",
+    "ts-mocha": "^7.0.0",
+    "ts-node": "^8.9.1",
+    "typescript": "^3.8.3"
   },
   "dependencies": {
     "@types/ndarray": "^1.0.7",
     "immutable": "^4.0.0-rc.12",
-    "lodash": "^4.17.11",
-    "ndarray": "^1.0.18",
+    "lodash": "^4.17.15",
+    "ndarray": "^1.0.19",
     "ndarray-ops": "^1.2.2",
-    "terminal-kit": "^1.27.2"
+    "terminal-kit": "^1.35.2"
   }
 }
