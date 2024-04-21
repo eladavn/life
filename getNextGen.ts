@@ -1,6 +1,4 @@
-import * as ndarray from 'ndarray';
-
-import {CellsMatrix} from './cellsMatrix';
+import {CellsMatrix, CreateCellsMatrix} from './cellsMatrix';
 import {getNumLivesAroundCell} from './getNumLivesAroundCell';
 
 export function getNextGen(currGen : CellsMatrix) : CellsMatrix | Error {
@@ -11,7 +9,7 @@ export function getNextGen(currGen : CellsMatrix) : CellsMatrix | Error {
             getNextGen2D(
                 currGen.shape.length === 1? 
                     // Incase of a flat array make a 1x1 matrix of it
-                    ndarray(currGen.data, [1,1]) : 
+                    CreateCellsMatrix(currGen.data, 1,1) : 
                     currGen)
         );
 }
@@ -51,9 +49,9 @@ function getNextGenCell(currGen : CellsMatrix, row:number, col:number) : number 
 
 function getNextGen2D(currGen : CellsMatrix ) : CellsMatrix {
 
-    return ndarray(currGen.data.map((val : number, index : number) => getNextGenCell(currGen, 
+    return CreateCellsMatrix(currGen.data.map((val : number, index : number) => getNextGenCell(currGen, 
             getRowFromFlatArrayIndex(index, currGen.shape[1]),
             getColFromFlatArrayIndex(index, currGen.shape[1])))            
-        ,currGen.shape);
+        ,currGen.shape[0], currGen.shape[1]);
 
 }

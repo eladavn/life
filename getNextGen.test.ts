@@ -1,12 +1,12 @@
 import {getNextGen} from "./getNextGen"; 
 import {assert} from 'chai';
-import * as ndarray from 'ndarray';
+import {CellsMatrix, CreateCellsMatrix} from './cellsMatrix';
 
 describe('getNextGen', function() {
     it('should return empty array when getting empty array', function() {
 
         // Act
-        let result = getNextGen(ndarray([])) as ndarray<number>;
+        let result = getNextGen(CreateCellsMatrix([],0,0)) as CellsMatrix;
 
         // Assert
         assert.equal(result.data.length,0);
@@ -15,28 +15,19 @@ describe('getNextGen', function() {
     it('should return [[0]] array when getting [[0]]', function() {
 
         // Act
-        let result = getNextGen(ndarray([0])) as ndarray<number>;
+        let result = getNextGen(CreateCellsMatrix([0],1,1)) as CellsMatrix;
 
         // Assert
         assert.deepEqual(result.data,[0]);
     });
 
-    it('should accept up to two dimensions', function() {
-
-        // Act
-        let result = getNextGen(ndarray([],[2,2,2])); 
-
-        // Assert
-        assert.isTrue(result instanceof Error);
-    });
-
     it('should return a matrix with the same size as given', () => {
 
         // Arrange
-        let currGen = ndarray(new Array(6), [3,2]);
+        let currGen = CreateCellsMatrix(new Array(6).fill(0), 3,2);
 
         // Act
-        let nextGen = getNextGen(currGen) as ndarray<number>;
+        let nextGen = getNextGen(currGen) as CellsMatrix;
 
         // Assert
         assert.deepEqual(nextGen.shape,[3,2]);
@@ -46,11 +37,11 @@ describe('getNextGen', function() {
     it('should kill a cell with no neighbors', ()=>{
         
         // Arrange
-        let currGen = ndarray<number>(new Int8Array(9), [3,3]);
+        let currGen = CreateCellsMatrix(new Array(9).fill(0), 3,3);
         currGen.set(1,1,1);
         
         // Act
-        let nextGen = getNextGen(currGen) as ndarray<number>;
+        let nextGen = getNextGen(currGen) as CellsMatrix;
 
         // Assert
         assert.equal(nextGen.get(1,1),0);
@@ -60,13 +51,13 @@ describe('getNextGen', function() {
     it('should keep a cell with two neighbors', ()=>{
         
         // Arrange
-        let currGen = ndarray<number>(new Int8Array(9), [3,3]);
+        let currGen = CreateCellsMatrix(new Array(9).fill(0), 3,3);
         currGen.set(1,1,1); // The cell
         currGen.set(0,0,1);  // It's neighbors
         currGen.set(0,1,1);
         
         // Act
-        let nextGen = getNextGen(currGen) as ndarray<number>;
+        let nextGen = getNextGen(currGen) as CellsMatrix;
 
         // Assert
         assert.equal(nextGen.get(1,1),1);
@@ -76,14 +67,14 @@ describe('getNextGen', function() {
     it('should kill a cell with one neighbor', ()=>{
         
         // Arrange
-        let currGen = ndarray([
+        let currGen = CreateCellsMatrix([
             0, 1, 0,
             0, 1, 0,
             0, 0, 0]            
-        , [3,3]);
+        , 3,3);
     
         // Act
-        let nextGen = getNextGen(currGen) as ndarray<number>;
+        let nextGen = getNextGen(currGen) as CellsMatrix;
 
         // Assert
         assert.equal(nextGen.get(1,1),0);
@@ -93,12 +84,12 @@ describe('getNextGen', function() {
     it('should iterate on a single row', ()=>{
         
         // Arrange
-        let currGen = ndarray([
+        let currGen = CreateCellsMatrix([
             1, 1, 1]            
-        , [1,3]);
+        , 3,1);
     
         // Act
-        let nextGen = getNextGen(currGen) as ndarray<number>;
+        let nextGen = getNextGen(currGen) as CellsMatrix;
 
         // Assert
         assert.deepEqual(nextGen.data,[0,1,0]);
@@ -108,15 +99,15 @@ describe('getNextGen', function() {
     it('should iterate on rows', ()=>{
         
         // Arrange
-        let currGen = ndarray([
+        let currGen = CreateCellsMatrix([
             1, 0, 0, 1,
             0, 0, 0, 0,
             0, 0, 0, 0,
             1, 0, 0, 1]            
-        , [4,4]);
+        , 4,4);
     
         // Act
-        let nextGen = getNextGen(currGen) as ndarray<number>;
+        let nextGen = getNextGen(currGen) as CellsMatrix;
 
         // Assert
         assert.deepEqual(nextGen.data,[
@@ -130,14 +121,14 @@ describe('getNextGen', function() {
     it('should keep a cell with three neighbors', ()=>{
         
         // Arrange
-        let currGen = ndarray([
+        let currGen = CreateCellsMatrix([
             1, 1,
             1, 1]            
-        , [2,2]);
+        , 2,2);
    
         
         // Act
-        let nextGen = getNextGen(currGen) as ndarray<number>;
+        let nextGen = getNextGen(currGen) as CellsMatrix;
 
         // Assert
         assert.deepEqual(nextGen.data,[
@@ -149,14 +140,14 @@ describe('getNextGen', function() {
     it('should kill a cell with more than three neighbors', ()=>{
         
         // Arrange
-        let currGen = ndarray([
+        let currGen = CreateCellsMatrix([
             1, 1, 1,
             1, 1, 0]            
-        , [2,3]);
+        , 2,3);
    
         
         // Act
-        let nextGen = getNextGen(currGen) as ndarray<number>;
+        let nextGen = getNextGen(currGen) as CellsMatrix;
 
         // Assert
         assert.equal(nextGen.get(1,1),0);
@@ -166,14 +157,14 @@ describe('getNextGen', function() {
     it('should reproduce a cell with three neighbors', ()=>{
         
         // Arrange
-        let currGen = ndarray([
+        let currGen = CreateCellsMatrix([
             1, 0, 1,
             0, 1, 0]            
-        , [2,3]);
+        , 2,3);
    
         
         // Act
-        let nextGen = getNextGen(currGen) as ndarray<number>;
+        let nextGen = getNextGen(currGen) as CellsMatrix;
 
         // Assert
         assert.equal(nextGen.get(0,1),1);
@@ -183,14 +174,14 @@ describe('getNextGen', function() {
     it('should keep a cell with two neighbors dead', ()=>{
         
         // Arrange
-        let currGen = ndarray([
+        let currGen = CreateCellsMatrix([
             1, 0,
             0, 1]            
-        , [2,2]);
+        , 2,2);
    
         
         // Act
-        let nextGen = getNextGen(currGen) as ndarray<number>;
+        let nextGen = getNextGen(currGen) as CellsMatrix;
 
         // Assert
         assert.equal(nextGen.get(0,1),0);
@@ -200,15 +191,15 @@ describe('getNextGen', function() {
     it('should keep a cell with four neighbors dead', ()=>{
         
         // Arrange
-        let currGen = ndarray([
+        let currGen = CreateCellsMatrix([
             1, 1,
             0, 1,
             1, 0]            
-        , [3,2]);
+        , 3,2);
    
         
         // Act
-        let nextGen = getNextGen(currGen) as ndarray<number>;
+        let nextGen = getNextGen(currGen) as CellsMatrix;
 
         // Assert
         assert.equal(nextGen.get(1,0),0);

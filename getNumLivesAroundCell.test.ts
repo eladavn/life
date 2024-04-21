@@ -1,16 +1,17 @@
 import {getNumLivesAroundCell} from './getNumLivesAroundCell'; 
+import {CreateCellsMatrix} from './cellsMatrix';
+
 import {assert} from 'chai';
-import * as ndarray from 'ndarray';
 
 describe('getNumLivesAroundCell', () => {
     
     it('with live middle cell within 3x3 matrix', () => {
         // Arrange
-        let matrix = ndarray([
+        let matrix = CreateCellsMatrix([
                 1, 1, 0,
                 0, 1, 0,
                 0, 1, 1]            
-            , [3,3]);
+            , 3,3);
 
         // Act
         let result = getNumLivesAroundCell(matrix, 1, 1);
@@ -21,11 +22,11 @@ describe('getNumLivesAroundCell', () => {
 
     it('with dead middle cell within 3x3 matrix', () => {
         // Arrange
-        let matrix = ndarray([
+        let matrix = CreateCellsMatrix([
                 1, 1, 0,
                 0, 0, 0,
                 0, 1, 1]            
-            , [3,3]);
+            , 3,3);
 
         // Act
         let result = getNumLivesAroundCell(matrix, 1, 1);
@@ -36,11 +37,11 @@ describe('getNumLivesAroundCell', () => {
 
     it('with cell surrounded in all directions', () => {
         // Arrange
-        let matrix = ndarray([
+        let matrix = CreateCellsMatrix([
                 1, 1, 0, 0,
                 0, 0, 0, 0,
                 0, 1, 1, 0]            
-            , [3,4]);
+            , 3,4);
 
         // Act
         let result = getNumLivesAroundCell(matrix, 1, 2);
@@ -51,11 +52,11 @@ describe('getNumLivesAroundCell', () => {
 
     it('with cell on right edge', () => {
         // Arrange
-        let matrix = ndarray([
+        let matrix = CreateCellsMatrix([
                 1, 1, 0, 0,
                 0, 0, 0, 0,
                 0, 1, 1, 0]            
-            , [3,4]);
+            , 3,4);
 
         // Act
         let result = getNumLivesAroundCell(matrix, 1, 3);
@@ -66,11 +67,11 @@ describe('getNumLivesAroundCell', () => {
 
     it('with cell on left edge', () => {
         // Arrange
-        let matrix = ndarray([
+        let matrix = CreateCellsMatrix([
                 0, 1,
                 0, 0,
                 0, 1]            
-            , [3,2]);
+            , 3,2);
 
         // Act
         let result = getNumLivesAroundCell(matrix, 1, 0);
@@ -82,10 +83,10 @@ describe('getNumLivesAroundCell', () => {
     it('with cell on top edge', () => {
         
         // Arrange
-        let matrix = ndarray([
+        let matrix = CreateCellsMatrix([
                 0, 1, 0,
                 0, 0, 1]            
-            , [2,3]);
+            , 2,3);
 
         // Act
         let result = getNumLivesAroundCell(matrix, 0, 1);
@@ -97,10 +98,10 @@ describe('getNumLivesAroundCell', () => {
     it('with cell on bottom edge', () => {
         
         // Arrange
-        let matrix = ndarray([
+        let matrix = CreateCellsMatrix([
                 0, 1, 1,
                 0, 1, 1]            
-            , [2,3]);
+            , 2,3);
 
         // Act
         let result = getNumLivesAroundCell(matrix, 1, 1);
@@ -113,8 +114,8 @@ describe('getNumLivesAroundCell', () => {
     it('with single row', () => {
         
         // Arrange
-        let matrix = ndarray([1,0,1]
-            , [1,3]);
+        let matrix = CreateCellsMatrix([1,0,1]
+            , 1,3);
 
         // Act
         let result = getNumLivesAroundCell(matrix, 0, 1);
@@ -126,11 +127,11 @@ describe('getNumLivesAroundCell', () => {
     it('with single column', () => {
         
         // Arrange
-        let matrix = ndarray([
+        let matrix = CreateCellsMatrix([
             1,
             0,
             1]
-            , [3,1]);
+            , 3,1);
 
         // Act
         let result = getNumLivesAroundCell(matrix, 1, 0);
@@ -142,7 +143,7 @@ describe('getNumLivesAroundCell', () => {
     it('with single cell', () => {
         
         // Arrange
-        let matrix = ndarray([1], [1,1]);
+        let matrix = CreateCellsMatrix([1], 1,1);
 
         // Act
         let result = getNumLivesAroundCell(matrix, 0, 0);
