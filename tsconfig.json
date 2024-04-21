@@ -12,7 +12,6 @@
         "pretty": true,
         "removeComments": false,
         "sourceMap": false,
-        "suppressImplicitAnyIndexErrors": true,
         "target": "es6"
     }
 }

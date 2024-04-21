@@ -1,7 +1,9 @@
 import * as ndarray from 'ndarray';
+
+import {CellsMatrix} from './cellsMatrix';
 import {getNumLivesAroundCell} from './getNumLivesAroundCell';
 
-export function getNextGen(currGen : ndarray<number> ) : ndarray<number> | Error {
+export function getNextGen(currGen : CellsMatrix) : CellsMatrix | Error {
 
     return (
         currGen.dimension > 2 ?
@@ -43,11 +45,11 @@ function shouldCellLive(currCelVal: number, numLivesAroundCell : number) : boole
         );
 }
 
-function getNextGenCell(currGen : ndarray<number>, row:number, col:number) : number {
+function getNextGenCell(currGen : CellsMatrix, row:number, col:number) : number {
     return shouldCellLive(currGen.get(row,col), getNumLivesAroundCell(currGen,row,col)) ? 1 : 0;
 }
 
-function getNextGen2D(currGen : ndarray<number> ) : ndarray<number> {
+function getNextGen2D(currGen : CellsMatrix ) : CellsMatrix {
 
     return ndarray(currGen.data.map((val : number, index : number) => getNextGenCell(currGen, 
             getRowFromFlatArrayIndex(index, currGen.shape[1]),

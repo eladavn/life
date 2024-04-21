@@ -1,4 +1,6 @@
 import * as ndarray from 'ndarray';
+
+import {CellsMatrix} from './cellsMatrix';
 import {getNextGen} from "./getNextGen"; 
 import {terminal} from 'terminal-kit';
 
@@ -6,7 +8,7 @@ function sleep(ms: number) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-function show(matrix: ndarray<number>) : string {
+function show(matrix: CellsMatrix) : string {
 
     let result = '';
 
@@ -37,7 +39,7 @@ function show(matrix: ndarray<number>) : string {
         
         await sleep(1000);
     
-        currGen =  getNextGen(currGen) as ndarray<number>;
+        currGen =  getNextGen(currGen) as CellsMatrix;
     
     
     }
