@@ -46,6 +46,7 @@ function getSurroundingHeight(row : number, matrix: CellsMatrix) : number {
             3;
 }
 
+// Get the matrix which is surrounding the cell at row, col while taking into account the edges of the matrix
 function getSurroundingMatrix(matrix: CellsMatrix, row: number, col: number): CellsMatrix {
     return matrix
         .lo(getSurroundingTopRow(row, matrix), getSurroundingLeftCol(col, matrix))
