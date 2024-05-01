@@ -1,3 +1,5 @@
+import * as ndarray from 'ndarray';
+
 import {getNextGen} from "./getNextGen"; 
 import {assert} from 'chai';
 import {CellsMatrix, CreateCellsMatrix} from './cellsMatrix';
@@ -19,6 +21,24 @@ describe('getNextGen', function() {
 
         // Assert
         assert.deepEqual(result.data,[0]);
+    });
+
+    it('should return single column matrix for single dimensional matrix', function() {
+
+        // Act
+        let result = getNextGen(ndarray([1,1,1],[3])) as CellsMatrix;
+
+        // Assert
+        assert.deepEqual(result.shape,[3,1]);
+    });
+
+    it('should accept up to two dimensions', function() {
+
+        // Act
+        let result = getNextGen(ndarray([],[2,2,2])); 
+
+        // Assert
+        assert.isTrue(result instanceof Error);
     });
 
     it('should return a matrix with the same size as given', () => {
