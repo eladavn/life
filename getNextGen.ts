@@ -8,8 +8,8 @@ export function getNextGen(currGen : CellsMatrix) : CellsMatrix | Error {
             new Error('Should be called with less than 3 dimensions') :
             getNextGen2D(
                 currGen.shape.length === 1? 
-                    // Incase of a flat array make a 1x1 matrix of it
-                    CreateCellsMatrix(currGen.data, 1,1) : 
+                    // Incase of a flat array with a length of n make a nx1 matrix of it
+                    CreateCellsMatrix(currGen.data, currGen.shape[0],1) : 
                     currGen)
         );
 }
