@@ -24,9 +24,9 @@ function getColFromFlatArrayIndex(index:number, colsCount : number) : number {
 }
 
 
-function shouldCellLive(currCelVal: number, numLivesAroundCell : number) : boolean {
+function shouldCellLive(currCellValue: number, numLivesAroundCell : number) : boolean {
 
-    return currCelVal === 0 ?
+    return currCellValue === 0 ?
         (
             numLivesAroundCell === 3 ?
                 true:
@@ -43,15 +43,22 @@ function shouldCellLive(currCelVal: number, numLivesAroundCell : number) : boole
         );
 }
 
+// Return the value for the next generation of a cell in the given location within the given
+// current generation.
 function getNextGenCell(currGen : CellsMatrix, row:number, col:number) : number {
-    return shouldCellLive(currGen.get(row,col), getNumLivesAroundCell(currGen,row,col)) ? 1 : 0;
+    return shouldCellLive(
+        currGen.get(row,col),                               // Current cell value
+        getNumLivesAroundCell(currGen,row,col)) ? 1 : 0;
 }
 
 function getNextGen2D(currGen : CellsMatrix ) : CellsMatrix {
 
-    return CreateCellsMatrix(currGen.data.map((val : number, index : number) => getNextGenCell(currGen, 
+    return CreateCellsMatrix(
+        currGen.data.map((val : number, index : number) => getNextGenCell(currGen,  // Next gen as array
             getRowFromFlatArrayIndex(index, currGen.shape[1]),
             getColFromFlatArrayIndex(index, currGen.shape[1])))            
-        ,currGen.shape[0], currGen.shape[1]);
+        ,currGen.shape[0],                                                          // height
+        currGen.shape[1]                                                            // width
+    );
 
 }
